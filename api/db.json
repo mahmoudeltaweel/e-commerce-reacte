@@ -104,5 +104,11 @@
       "image": "https://fakestoreapi.com/img/71z3kpMAYsL._AC_UY879_.jpg",
       "category": "mens"
     }
+  ],
+  "categories": [
+   "electronics",
+  "jewelery",
+  "men's clothing",
+  "women's clothing"
   ]
 }
