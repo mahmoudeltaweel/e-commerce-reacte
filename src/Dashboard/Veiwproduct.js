@@ -8,7 +8,7 @@ export default function Veiwproduct(){
         fetch(`http://localhost:9000/products/${id}`)
         .then((res)=>res.json())
         .then((data)=>setdataproduct(data))
-    },[])
+    },[id])
     
     return(
         <>

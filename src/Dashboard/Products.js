@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
+
 
 export default function Products(){
 
@@ -15,13 +17,25 @@ export default function Products(){
       .then((data)=>setdata(data))
   }
 
-    function deleteuser(id){
-           fetch(`http://localhost:9000/products/${id}`,{
+    function deleteproduct(item){
+      Swal.fire({
+        title: `Do you want to Delete the ${item.title}?`,
+        // showDenyButton: true,
+        confirmButtonText: "Yes",
+        showCancelButton: true,
+      }).then((result) => {
+          if (result.isConfirmed) {        
+          fetch(`http://localhost:9000/products/${item.id}`,{
             method:"DELETE"
             }).then((res)=>res.json())
             .then((data)=>
               getAllProduct()
-          )
+          ) 
+          Swal.fire("Delete!", "", "success");
+        }
+      });
+
+
                      }
                      
     let showdata = data.map((item ,index)=>
@@ -43,7 +57,7 @@ export default function Products(){
              </Link>
 
                <i 
-             className="fa-sharp fa-solid fa-trash" onClick={()=>deleteuser(item.id)}
+             className="fa-sharp fa-solid fa-trash" onClick={()=>deleteproduct(item)}
              style={{color:"red" , fontSize:"20px" , cursor:"pointer" }}
              ></i>
  

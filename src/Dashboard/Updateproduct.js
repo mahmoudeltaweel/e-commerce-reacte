@@ -9,7 +9,6 @@ export default function Updateproduct(){
   const [category, setcategory] = useState("");
     const navpro=useNavigate();
     let {id} = useParams();
-    const[dataproduct , setdataproduct]=useState([]);
 
     useEffect(()=>{
         fetch(`http://localhost:9000/products/${id}`)
@@ -20,9 +19,9 @@ export default function Updateproduct(){
             setcategory(data.category)
             setdescription(data.description)
             setimage(data.image)
-    })
+    })    
     
-    },[])
+    },[id])
 
     async function updateproduct(e){
         e.preventDefault()   
@@ -58,7 +57,7 @@ export default function Updateproduct(){
           type="text"
           value={title}
           onChange={(e) => settitle(e.target.value)}
-        ></input>
+        />
 
 
         <label htmlFor="price"  className="form-label">price</label>
@@ -67,28 +66,28 @@ export default function Updateproduct(){
           type="text"
           value={price}
           onChange={(e) => setprice(e.target.value)}
-        ></input>
+          />
         <label htmlFor="description"  className="form-label">description</label>
         <input
          className="form-control"
           type="text"
           value={description}
           onChange={(e) => setdescription(e.target.value)}
-        ></input>
+          />
         <label htmlFor="category"  className="form-label">category</label>
         <input
          className="form-control"
           type="text"
           value={category}
           onChange={(e) => setcategory(e.target.value)}
-        ></input>
+          />
         <label htmlFor="image"  className="form-label">image</label>
         <input
          className="form-control"
           type="text"
           value={image}
           onChange={(e) => setimage(e.target.value)}
-        ></input>
+          />
         <div>
             <button type="submit" className="btn btn-info" style={{margin:"20px 50% " ,}}>update</button>
         </div>

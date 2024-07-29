@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateProduct() {
@@ -12,22 +13,14 @@ export default function CreateProduct() {
   async function addproduct(e){
     e.preventDefault()   
      try{
-        fetch('http://localhost:9000/products/',{
-            method:"POST",
-            body:JSON.stringify(
-                {
+        axios.post('http://localhost:9000/products/',{
                     title: title,
                     price: price,
                     description: description,
                     image: image,
                     category: category
-                }
-            )
-        })
-            .then(res=>res.json())
-            .then((data=>
+                })
                 navadd("/dashboard/products")
-            ))
     }
     catch(err){
         console.log("err" , err);
